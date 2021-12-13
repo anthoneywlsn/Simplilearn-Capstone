@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-      dockerfile true
-    }
+    agent any
     environment {
       AWS_ACCOUNT_ID="195879934828"
       AWS_DEFAULT_REGION="us-east-2a" 
@@ -12,7 +10,7 @@ pipeline {
       IMAGE_REPO_NAME="simplilearn-capstone-pvt-repo"
       IMAGE_TAG="${env.BUILD_ID}"
       REPOSITORY_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-      registryCredential="aws-iam-user"
+      registryCredential="anthoneywlsn"
     }
    
     stages {
