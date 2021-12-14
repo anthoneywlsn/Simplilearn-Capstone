@@ -19,8 +19,7 @@ pipeline {
     stage('Unit Tests') {
       steps{
         script {
-	  sh 'rm -rf package-lock.json'
-	  sh 'npm install'
+	   sh 'npm install'
 	        sh 'npm test -- --watchAll=false'
         }
       }
