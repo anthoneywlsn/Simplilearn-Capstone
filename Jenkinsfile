@@ -14,13 +14,13 @@ pipeline {
     }
    
     stages {
-  npm '{   "name": "docker_nodejs_app",   "version": "1.0.0",   "description": "a NodeJS app in Docker",   "main": "server.js",   "scripts": {     "test": "jest ./src/test",     "start": "PORT=3000 node src/server.js",     "build": "npm run-script build"   },   "dependencies": {     "jest": "^26.6.3",     "supertest": "^6.0.1"   } }'
+ 
 	    
     // Tests
     stage('Unit Tests') {
       steps{
         script {
-	   sh 'npm install'
+	   sh 'npm install --global'
 	        sh 'npm test -- --watchAll=false'
        }
       }
