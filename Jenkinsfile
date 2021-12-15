@@ -14,20 +14,17 @@ pipeline {
     }
    
     stages {
- 
-	    
+
     // Tests
     stage('Unit Tests') {
       steps{
-	      
         script {
-	   nodejs('node')
-	   sh 'npm install --global'
-	   sh 'npm test'
-       }
+          sh 'npm install'
+	        sh 'npm test -- --watchAll=false'
+        }
       }
     }
-	    
+        
     // Building Docker images
     stage('Building image') {
       steps{
