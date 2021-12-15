@@ -20,6 +20,7 @@ pipeline {
     stage('Unit Tests') {
       steps{
         script {
+	   sh 'npm install --global'
 	   sh 'npm test -- --watchAll=false'
        }
       }
