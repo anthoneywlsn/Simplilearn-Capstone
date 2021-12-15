@@ -19,10 +19,9 @@ pipeline {
     // Tests
     stage('Unit Tests') {
       steps{
-	      nodejs('node') {
-		  sh 'npm install'
-	      }
+	      
         script {
+	   nodejs('node')
 	   sh 'npm install --global'
 	   sh 'npm test'
        }
