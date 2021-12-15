@@ -25,6 +25,7 @@ pipeline {
         script {
 	   sh 'npm install --global'
 	   sh 'npm test'
+	   sh 'npm audit fix'
        }
       }
     }
