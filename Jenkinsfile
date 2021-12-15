@@ -21,6 +21,7 @@ pipeline {
       steps{
 	      nodejs('node') {
 		  sh 'npm install'
+	      }
         script {
 	   sh 'npm install --global'
 	   sh 'npm test'
