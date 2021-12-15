@@ -19,9 +19,11 @@ pipeline {
     // Tests
     stage('Unit Tests') {
       steps{
+	      nodejs('node') {
+		  sh 'npm install'
         script {
 	   sh 'npm install --global'
-	   sh 'npm test -- --watchAll=false'
+	   sh 'npm test'
        }
       }
     }
