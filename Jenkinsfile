@@ -1,7 +1,7 @@
 pipeline {
     agent any
 	
-    tools {nodejs "nodejs"}
+    tools {nodejs "node"}
     
     environment {
       AWS_ACCOUNT_ID="195879934828"
