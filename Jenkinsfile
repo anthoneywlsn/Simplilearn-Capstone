@@ -17,6 +17,8 @@ pipeline {
     }
    
     stages {
+
+	    
       stage('Build') {
             steps {
                 nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
@@ -25,7 +27,15 @@ pipeline {
             }
         }
 
-        
+            // Tests
+      stage('Unit Tests') {
+        steps{
+          script {
+            sh 'npm install'
+		sh 'npm test -- --watchAll=false'
+        }
+      }
+    }  
       // Building Docker images
       stage('Building image') {
         steps{
