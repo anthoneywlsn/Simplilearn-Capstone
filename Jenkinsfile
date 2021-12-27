@@ -17,50 +17,45 @@ pipeline {
     }
    
     stages {
-
-	    
       stage('Build') {
-            steps {
-                nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
-                    sh 'npm config ls'
-                }
+        steps {
+          nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
+            sh 'npm config ls'
             }
-        }
-
-            // Tests
+          }
+      }
+      // Tests
       stage('Unit Tests') {
         steps{
           script {
             sh 'npm install'
-		sh 'npm test -- --watchAll=false'
+	    sh 'npm test -- --watchAll=false'
+          }
         }
-      }
-    }  
+      } 
       // Building Docker images
       stage('Building image') {
         steps{
           script {
             dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+          }
         }
       }
-    }
-   
       // Uploading Docker images into AWS ECR
       stage('Pushing to ECR') {
         steps{
           script {
-			    docker.withRegistry("https://" + REPOSITORY_URI, "ecr:${AWS_DEFAULT_REGION}:" + registryCredential) {
-            dockerImage.push()
+	    docker.withRegistry("https://" + REPOSITORY_URI, "ecr:${AWS_DEFAULT_REGION}:" + registryCredential) {
+              dockerImage.push()
+            }
           }
         }
       }
-    }
-
       stage('Deploy') {
         steps{
           withAWS(credentials: registryCredential, region: "${AWS_DEFAULT_REGION}") {
             script {
-			      './script.sh'
+	      './script.sh'
           }
         }
       }
