@@ -1,0 +1,24 @@
+{
+    "family": "CI_FAMILY",
+    "containerDefinitions": [
+        {
+            "image": "CI_REPOSITORY_URI:CI_BUILD_NUMBER",
+            "name": "CI_NAME",
+	        "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 3000,
+                    "hostPort": 3000
+                }
+            ]
+        }
+    ],
+    "cpu": "512",
+    "memory": "1024",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "networkMode": "awsvpc",
+    "executionRoleArn": "CI_ROLE_ARN"
+}
+
