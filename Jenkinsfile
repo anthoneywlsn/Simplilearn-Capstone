@@ -1,7 +1,7 @@
 pipeline {
     agent any
 	
-    tools {nodejs "node"}
+    tools {nodejs "nodejs"}
     
     environment {
       AWS_ACCOUNT_ID="195879934828"
@@ -17,6 +17,8 @@ pipeline {
     }
    
     stages {
+
+	    
       stage('Build') {
             steps {
                 nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
@@ -24,7 +26,8 @@ pipeline {
                 }
             }
         }
-      // Tests
+
+            // Tests
       stage('Unit Tests') {
         steps{
           script {
@@ -32,8 +35,7 @@ pipeline {
 		sh 'npm test -- --watchAll=false'
         }
       }
-    }
-        
+    }  
       // Building Docker images
       stage('Building image') {
         steps{
