@@ -22,7 +22,7 @@ pipeline {
     stage('Unit Tests') {
       steps{
         script {
-          sh 'npm test -- --watchAll=true'
+          sh 'npm test -- --watchAll=false'
         }
       }
     }
