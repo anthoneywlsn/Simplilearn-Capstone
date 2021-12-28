@@ -1,6 +1,8 @@
 pipeline {
     agent any
-	
+    
+    tools {nodejs "nodejs"}
+    
     environment {
       AWS_ACCOUNT_ID="195879934828"
       AWS_DEFAULT_REGION="us-east-2a" 
@@ -38,7 +40,7 @@ pipeline {
     stage('Pushing to ECR') {
       steps{
         script {
-			    docker.withRegistry("https://" + REPOSITORY_URI, "ecr:${AWS_DEFAULT_REGION}:" + registryCredential) {
+	    docker.withRegistry("https://" + REPOSITORY_URI, "ecr:${AWS_DEFAULT_REGION}:" + registryCredential) {
             dockerImage.push()
           }
         }
@@ -49,7 +51,7 @@ pipeline {
       steps{
         withAWS(credentials: registryCredential, region: "${AWS_DEFAULT_REGION}") {
           script {
-			      './script.sh'
+	    './script.sh'
           }
         }
       }
