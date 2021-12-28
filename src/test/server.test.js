@@ -1,12 +1,6 @@
 const app = require('../server'),
 request = require('supertest');
 
-rules: {
-  ...
-
-  'camelcase': 'off',
-}
-
 describe('API Test',()=>{
      afterEach(function (done) {
         app.close(done)
