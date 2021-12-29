@@ -25,7 +25,7 @@ pipeline {
       }
       // Tests
       stage('Unit Tests') {
-        steps{
+        steps {
           script {
             sh 'npm test -- --watchAll=false'
           }
