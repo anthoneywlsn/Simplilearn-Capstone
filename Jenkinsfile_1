@@ -27,7 +27,7 @@ pipeline {
       stage('Unit Tests') {
         steps {
           script {
-            sh 'npm run --silent test'
+             sh 'npm test -- --watchAll=false'
           }
         }
       }  
