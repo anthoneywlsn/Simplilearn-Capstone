@@ -27,7 +27,7 @@ pipeline {
       stage('Unit Tests') {
         steps {
           script {
-            sh './jenkins/scripts/test.sh'
+            sh 'npm test -- --watchAll=false'
           }
         }
       }  
