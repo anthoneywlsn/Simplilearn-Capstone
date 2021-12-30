@@ -23,5 +23,13 @@ pipeline {
           sh 'npm install' 
         }
       }
+            // Tests
+      stage('Unit Tests') {
+        steps {
+          script {
+            sh './jenkins/scripts/test.sh'
+          }
+        }
+      }  
     }
   }
