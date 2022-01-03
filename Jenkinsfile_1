@@ -20,7 +20,15 @@ pipeline {
     stages {
       stage('Build') { 
         steps {
-          sh 'npm install' 
+          sh 'npm install'
+        }
+      }
+      // Building Docker images
+      stage('Building image') {
+        steps{
+          script {
+            dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+          }
         }
       }
     }
