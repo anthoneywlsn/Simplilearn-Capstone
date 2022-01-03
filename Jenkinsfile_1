@@ -20,15 +20,10 @@ pipeline {
     stages {
       stage('Build') { 
         steps {
+          nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<con
+          fig-file-provider-id>')
+          sh 'npm config ls'
           sh 'npm install'
-        }
-      }
-      // Building Docker images
-      stage('Building image') {
-        steps{
-          script {
-            dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
-          }
         }
       }
     }
